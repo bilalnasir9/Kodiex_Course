@@ -13,7 +13,7 @@
         android:textSize="25sp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:text="Select image from:"
+        android:text="Select image:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +34,7 @@
             android:id="@+id/dialog_mediabutton"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:text="Media"
+            android:text="Gallery"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="20sp"

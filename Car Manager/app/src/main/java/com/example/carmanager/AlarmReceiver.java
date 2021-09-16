@@ -30,28 +30,34 @@ public class AlarmReceiver extends BroadcastReceiver {
         int notificationId = intent.getIntExtra("notificationId", 0);
         String message = intent.getStringExtra("message");
         String title = intent.getStringExtra("title");
-//        ArrayList selecteddays = intent.getStringArrayListExtra("selecteddays");
-//        for (int i = 0; i < selecteddays.size(); i++) {
-//            String checkday = String.valueOf(selecteddays.get(i));
-//            if (checkday.equals("Sunday")) {
-//                dayslist.add(i, 1);
-//            }if (checkday.equals("Monday")) {
-//                dayslist.add(i, 2);
-//            }if (checkday.equals("Tuesday")) {
-//                dayslist.add(i, 3);
-//            }if (checkday.equals("Wednesday")) {
-//                dayslist.add(i, 4);
-//            }if (checkday.equals("Thursday")) {
-//                dayslist.add(i, 5);
-//            }if (checkday.equals("Friday")) {
-//                dayslist.add(i, 6);
-//            }if (checkday.equals("Saturday")) {
-//                dayslist.add(i, 7);
-//            }
-//        }
-//        for (int k = 0; k < selecteddays.size(); k++){
-//            try {
-//                if (dayofweek == dayslist.get(k)) {
+        ArrayList selecteddays = intent.getStringArrayListExtra("selecteddays");
+        for (int i = 0; i < selecteddays.size(); i++) {
+            String checkday = String.valueOf(selecteddays.get(i));
+            if (checkday.equals("Sunday")) {
+                dayslist.add(i, 1);
+            }
+            if (checkday.equals("Monday")) {
+                dayslist.add(i, 2);
+            }
+            if (checkday.equals("Tuesday")) {
+                dayslist.add(i, 3);
+            }
+            if (checkday.equals("Wednesday")) {
+                dayslist.add(i, 4);
+            }
+            if (checkday.equals("Thursday")) {
+                dayslist.add(i, 5);
+            }
+            if (checkday.equals("Friday")) {
+                dayslist.add(i, 6);
+            }
+            if (checkday.equals("Saturday")) {
+                dayslist.add(i, 7);
+            }
+        }
+        for (int k = 0; k < selecteddays.size(); k++) {
+            try {
+                if (dayofweek == dayslist.get(k)) {
                     // Call MainActivity when notification is tapped.
                     Intent mainIntent = new Intent(context, dashboard_activity.class);
                     PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
@@ -69,22 +75,22 @@ public class AlarmReceiver extends BroadcastReceiver {
 //                            R.drawable.launcher);
                     // Prepare Notification
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID);
-                            builder.setSmallIcon(R.drawable.launcher);
+                    builder.setSmallIcon(R.drawable.launcher);
 //                            builder.setLargeIcon(bitmap);
-                            builder.setContentTitle(title)
+                    builder.setContentTitle(title)
                             .setContentText(message)
                             .setContentIntent(contentIntent)
                             .setPriority(NotificationCompat.PRIORITY_HIGH)
                             .setAutoCancel(true);
                     // Notify
                     notificationManager.notify(notificationId, builder.build());
-//                }
-//                else {
-//                    Toast.makeText(context, "You will be notify in future as per schedule", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            catch (Exception exception){
-//                Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show();
-//            }
+                } else {
+                    Toast.makeText(context, "You will be notify in future as per schedule", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception exception) {
+                Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
+}

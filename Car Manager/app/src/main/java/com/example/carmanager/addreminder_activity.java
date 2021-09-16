@@ -31,10 +31,8 @@ public class addreminder_activity extends AppCompatActivity {
     TextView tvdays, tvtime;
     EditText ettitle, etmessage;
     int hours, minuts;
-    Calendar myCalendar = getInstance();
 
     List<String> getselecteddays = new ArrayList<>();
-
     @Override
     public boolean startActivityIfNeeded(@NonNull Intent intent, int requestCode) {
         return super.startActivityIfNeeded(intent, requestCode);
@@ -79,7 +77,7 @@ public class addreminder_activity extends AppCompatActivity {
         intent.putExtra("notificationId", notificationId);
         intent.putExtra("message", etmessage.getText().toString());
         intent.putExtra("title", ettitle.getText().toString());
-//        intent.putStringArrayListExtra("selecteddays", (ArrayList<String>) getselecteddays);
+        intent.putStringArrayListExtra("selecteddays", (ArrayList<String>) getselecteddays);
         PendingIntent pendingIntent;
         pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -88,12 +86,13 @@ public class addreminder_activity extends AppCompatActivity {
         startTime.set(MINUTE, minuts);
         startTime.set(SECOND, 0);
         long alarmStartTime = startTime.getTimeInMillis();
-        alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,alarmStartTime,
                 AlarmManager.INTERVAL_DAY, pendingIntent);
         Toast.makeText(this, "Alarm is set Successfully", Toast.LENGTH_SHORT).show();
     }
     public void choosetime_addreminder(View view) {
+        Calendar myCalendar = getInstance();
         int hour = myCalendar.get(HOUR_OF_DAY);
         int minute = myCalendar.get(MINUTE);
         TimePickerDialog mTimePicker;
@@ -101,7 +100,8 @@ public class addreminder_activity extends AppCompatActivity {
             if (selectedMinute < 10) {
                 tvtime.setText(selectedHour + ":0" + selectedMinute);
                 hours = selectedHour;
-            } else {
+            }
+            else {
                 tvtime.setText(selectedHour + ":" + selectedMinute);
             }
             if (selectedHour == 0) {

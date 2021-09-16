@@ -120,5 +120,6 @@ ProgressDialog progressDialog;
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
+        startActivity(new Intent(this,dashboard_activity.class));
     }
 }
