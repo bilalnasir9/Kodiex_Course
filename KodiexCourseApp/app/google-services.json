@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "897121481545",
+    "firebase_url": "https://kodiex-course-app-default-rtdb.firebaseio.com",
+    "project_id": "kodiex-course-app",
+    "storage_bucket": "kodiex-course-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897121481545:android:91b884d1ac1f6a7cf92098",
+        "android_client_info": {
+          "package_name": "com.example.kodiexcourseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897121481545-ssjpo1t8suqhpkvqg9e6p308cg42j81r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kodiexcourseapp",
+            "certificate_hash": "9cb7bdc861b07e75acf7968a779f046e30af4786"
+          }
+        },
+        {
+          "client_id": "897121481545-bmq1guno65ukl9d5cb8enqfbki90jvd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNRXc5hMKcIQ8RieXZ7BXG7McJXevAOa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897121481545-bmq1guno65ukl9d5cb8enqfbki90jvd8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
