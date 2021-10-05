@@ -10,9 +10,10 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="@drawable/backgroundshape4"
         android:paddingEnd="20dp"
+        android:paddingTop="10dp"
         android:theme="@style/MyCustomTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -88,6 +89,7 @@
                     android:id="@+id/textview_dashborad_enrolledcourse"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="0"
@@ -99,6 +101,7 @@
                     android:id="@+id/textview_dashborad_certificate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="0"
@@ -129,6 +132,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Enrolled courses"
@@ -141,6 +145,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Certificate"
+                    android:layout_marginBottom="5dp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -184,6 +189,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textStyle="bold"
+                android:onClick="button_announcement_clicked"
                 app:cornerRadius="6dp"
                 app:icon="@drawable/ic_announsment"
                 app:iconGravity="top"

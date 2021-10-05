@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.text.TextUtils;
 
 import android.util.Log;
@@ -41,6 +42,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(token -> {
+            if (!TextUtils.isEmpty(token)) {
+                Log.d("TAG", "retrieve token successful : " + token+"\tend");
+            } else{
+                Log.w("TAG", "token should not be null...");
+            }
+        });
+
     }
 
     public void textview_signup_clicked(View view) {
@@ -96,8 +106,15 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(MainActivity.this, "Login success.",
                                     Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, dashboard_student.class));
-                            progressDialog.dismiss();
+                            if (email.equals("kodiexsoft@gmail.com")){
+                                progressDialog.dismiss();
+                                Toast.makeText(this, "you are admin", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                startActivity(new Intent(MainActivity.this, dashboard_student.class));
+                                progressDialog.dismiss();
+                            }
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Email or password is incorrect\nif you are a new user please create account",

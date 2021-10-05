@@ -3,6 +3,7 @@ package com.example.kodiexcourseapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class dashboard_student extends AppCompatActivity {
@@ -33,6 +36,7 @@ public class dashboard_student extends AppCompatActivity {
     String name, email, userid, contact;
     ProgressDialog progressDialog;
     Uri profileurl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +98,15 @@ public class dashboard_student extends AppCompatActivity {
         intent.putExtra("name", name);
         intent.putExtra("email", email);
         intent.putExtra("contact", contact);
+        startActivity(intent);
+    }
+
+    public void button_announcement_clicked(View view) {
+        @SuppressLint("SimpleDateFormat")
+        String current_datetime = new SimpleDateFormat("ddMMyyyyHHmmss").
+                format(Calendar.getInstance().getTime());
+        Intent intent=new Intent(this, announcement_activity.class);
+        intent.putExtra("date",current_datetime);
         startActivity(intent);
     }
 }
