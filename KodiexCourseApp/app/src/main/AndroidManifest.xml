@@ -13,19 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KodiexCourseApp">
         <activity
+            android:name=".allcourses_detail_explaination"
+            android:exported="true" />
+        <activity
+            android:name=".allcourses_activity"
+            android:exported="true" />
+        <activity
+            android:name=".admin_portal"
+            android:exported="true"
+            android:theme="@style/noactionbar" />
+        <activity
             android:name=".announcement_activity"
             android:exported="true" />
         <activity
             android:name=".userprofile_activity"
             android:exported="true"
-            android:theme="@style/noactionbar"
-            android:label="Profile setting">
-        </activity>
+            android:label="Profile setting"
+            android:theme="@style/noactionbar" />
         <activity
             android:name=".dashboard_student"
             android:exported="true"
-            android:theme="@style/noactionbar">
-        </activity>
+            android:theme="@style/noactionbar" />
         <activity
             android:name=".user_signup_activity"
             android:exported="true"
@@ -37,6 +45,7 @@
             android:theme="@style/noactionbar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

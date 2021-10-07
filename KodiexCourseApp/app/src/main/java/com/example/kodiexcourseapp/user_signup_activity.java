@@ -70,7 +70,7 @@ public class user_signup_activity extends AppCompatActivity {
                             progressDialog.dismiss();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(user_signup_activity.this, "Something went wrong\nPlease try again",
+                            Toast.makeText(user_signup_activity.this, "Something went wrong\nTry with other email",
                                     Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }

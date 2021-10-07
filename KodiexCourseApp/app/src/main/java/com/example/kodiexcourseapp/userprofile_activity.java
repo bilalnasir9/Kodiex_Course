@@ -113,7 +113,6 @@ public class userprofile_activity extends AppCompatActivity {
         Dialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Exit")
                 .setMessage("Are you sure to want exit?").create();
-        dialog.setTitle("hi man");
         dialog.getWindow().setGravity(Gravity.BOTTOM);
         dialog.show();
         dialog.setContentView(R.layout.choose_image_layout);

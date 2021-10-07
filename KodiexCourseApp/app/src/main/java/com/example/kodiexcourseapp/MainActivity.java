@@ -107,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Login success.",
                                     Toast.LENGTH_SHORT).show();
                             if (email.equals("kodiexsoft@gmail.com")){
+                                startActivity(new Intent(MainActivity.this, admin_portal.class));
                                 progressDialog.dismiss();
-                                Toast.makeText(this, "you are admin", Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 startActivity(new Intent(MainActivity.this, dashboard_student.class));
@@ -262,7 +262,13 @@ public class MainActivity extends AppCompatActivity {
         try {
             FirebaseUser currentUser = mAuth.getCurrentUser();
             if (currentUser != null) {
-                startActivity(new Intent(MainActivity.this, dashboard_student.class));
+                if (Objects.equals(mAuth.getCurrentUser().getEmail(), "kodiexsoft@gmail.com")){
+                    startActivity(new Intent(MainActivity.this, admin_portal.class));
+                    progressDialog.dismiss();
+                }
+                else {
+                    startActivity(new Intent(MainActivity.this, dashboard_student.class));
+                }
             }
         }
         catch (Exception e){

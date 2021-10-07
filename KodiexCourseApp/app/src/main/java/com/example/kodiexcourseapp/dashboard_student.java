@@ -109,4 +109,17 @@ public class dashboard_student extends AppCompatActivity {
         intent.putExtra("date",current_datetime);
         startActivity(intent);
     }
+
+    public void button_allcourses_clicked(View view) {
+        startActivity(new Intent(this,allcourses_activity.class));
+    }
+
+    public void button_videolectures_clicked(View view) {
+        startActivity(new Intent(this,allcourses_detail_explaination.class));
+
+
+    }
+
+    public void button_enrolledcourses_clicked(View view) {
+    }
 }
