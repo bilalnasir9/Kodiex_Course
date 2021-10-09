@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -36,6 +37,7 @@ public class dashboard_student extends AppCompatActivity {
     String name, email, userid, contact;
     ProgressDialog progressDialog;
     Uri profileurl;
+    TextView tv_completedcourse, tvenrolledcourse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,18 @@ public class dashboard_student extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_student);
         progressDialog = new ProgressDialog(this, R.style.AppCompatAlertDialogStyle);
         progressDialog.setMessage("Please wait");
+        tv_completedcourse = findViewById(R.id.textview_dashborad_completedcourse);
+        tvenrolledcourse = findViewById(R.id.textview_dashborad_enrolledcourse);
         imageView_userprofile = findViewById(R.id.imageview_dashboarduserprofile);
         userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+        reference.child(userid).child("total_enrolled_courses").get().addOnCompleteListener(task -> {
+            try {
+                String enrolled_course_value = Objects.requireNonNull(task.getResult().getValue()).toString();
+                tvenrolledcourse.setText(enrolled_course_value);
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
+        });
         loaddata();
     }
 
@@ -105,21 +117,24 @@ public class dashboard_student extends AppCompatActivity {
         @SuppressLint("SimpleDateFormat")
         String current_datetime = new SimpleDateFormat("ddMMyyyyHHmmss").
                 format(Calendar.getInstance().getTime());
-        Intent intent=new Intent(this, announcement_activity.class);
-        intent.putExtra("date",current_datetime);
+        Intent intent = new Intent(this, announcement_activity.class);
+        intent.putExtra("date", current_datetime);
         startActivity(intent);
     }
 
     public void button_allcourses_clicked(View view) {
-        startActivity(new Intent(this,allcourses_activity.class));
+        startActivity(new Intent(this, allcourses_activity.class));
     }
 
     public void button_videolectures_clicked(View view) {
-        startActivity(new Intent(this,allcourses_detail_explaination.class));
+//        startActivity(new Intent(this,allcourses_detail_expl
+//        aination.class));
 
 
     }
 
     public void button_enrolledcourses_clicked(View view) {
+        startActivity(new Intent(this, enrolled_courses_activity.class));
+
     }
 }

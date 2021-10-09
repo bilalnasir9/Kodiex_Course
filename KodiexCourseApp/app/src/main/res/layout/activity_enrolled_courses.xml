@@ -4,10 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".allcourses_activity">
+    android:background="@color/white"
+    android:orientation="horizontal"
+    tools:context=".enrolled_courses_activity">
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_enrolled_courses"
         android:layout_width="match_parent"
-        android:background="#D8D8D8"
         android:layout_height="match_parent"
-        android:id="@+id/recycler_allcourses"/>
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

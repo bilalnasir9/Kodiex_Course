@@ -41,7 +41,6 @@ public class announcement_activity extends AppCompatActivity {
     List<String> listtile = new ArrayList<>();
     List<String> listdetail = new ArrayList<>();
     List<String> listdays = new ArrayList<>();
-    List<Integer> listresult = new ArrayList<>();
     String current_datetime;
     adapter_announcement adapter;
 

@@ -4,11 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape1.xml" value="0.23794871794871794" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape10.xml" value="0.20833333333333334" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape2.xml" value="0.23794871794871794" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape3.xml" value="0.23794871794871794" />
-        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape4.xml" value="0.24166666666666667" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape4.xml" value="0.19" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape5.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape6.xml" value="0.12407407407407407" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape7.xml" value="0.20833333333333334" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape8.xml" value="0.20833333333333334" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/backgroundshape9.xml" value="0.20833333333333334" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/customratingstar.xml" value="0.24166666666666667" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/ic_all_courses.xml" value="0.23794871794871794" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/drawable/ic_baseline_arrow_forward.xml" value="0.21203703703703702" />
@@ -32,6 +36,8 @@
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_allcourses_detail_explaination.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_announcement.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_dashboard_student.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_enrolled.xml" value="0.22552083333333334" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_enrolled_courses.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_facebook_auth.xml" value="0.22552083333333334" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/activity_notification.xml" value="0.33" />
@@ -40,8 +46,10 @@
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/announce_layout.xml" value="0.22" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/choose_image_layout.xml" value="0.14" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/layout_admin_add_announcement.xml" value="0.25" />
-        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/layout_recycler_allcourses.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/layout_recycler_allcourses.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/notification.xml" value="0.18" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/recycler_curriculum_detail.xml" value="0.22" />
+        <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/layout/recycler_enrolled_courses.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/KodiexCourseApp/app/src/main/res/menu/usermenu.xml" value="0.22552083333333334" />
       </map>
     </option>
@@ -51,5 +59,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.22" />
+      </ProjectState>
+    </option>
   </component>
 </project>

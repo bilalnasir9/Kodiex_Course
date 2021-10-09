@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/layout_recycler_allcourses"
     android:layout_margin="5dp"
     android:background="@color/white">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView_allcourses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -25,12 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginEnd="16dp"
-        android:text="Free"
+        android:text="status"
         android:textColor="#4CAF50"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_allcourses" />
 
     <TextView
         android:id="@+id/textView18"
@@ -51,13 +51,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:gravity="center"
-        android:text="Ibrahim shah"
+        android:text="instructor name"
         android:textColor="#676666"
         android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/tv_allcourses_title" />
-
 
 
     <TextView
@@ -67,7 +66,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Learn Python Programming Masterclass and much more"
+        android:text="title name"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="normal"
@@ -81,10 +80,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Data Science Machine Learning"
+        android:text="subject name"
         android:textColor="#2196F3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_allcourses" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -106,7 +105,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:isIndicator="true"
-        android:rating="5"
+        android:rating="1"
         android:theme="@style/RatingBar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_allcourses_instructer"
