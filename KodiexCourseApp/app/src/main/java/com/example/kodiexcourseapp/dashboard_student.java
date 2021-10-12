@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,13 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.kodiexcourseapp.admin_portal.announcement_activity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,6 +50,14 @@ public class dashboard_student extends AppCompatActivity {
             try {
                 String enrolled_course_value = Objects.requireNonNull(task.getResult().getValue()).toString();
                 tvenrolledcourse.setText(enrolled_course_value);
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
+        });
+        reference.child(userid).child("completed_courses").get().addOnCompleteListener(task -> {
+            try {
+                String value = Objects.requireNonNull(task.getResult().getValue()).toString();
+                tv_completedcourse.setText(value);
             } catch (Exception e) {
             e.printStackTrace();
             }
@@ -127,8 +132,7 @@ public class dashboard_student extends AppCompatActivity {
     }
 
     public void button_videolectures_clicked(View view) {
-//        startActivity(new Intent(this,allcourses_detail_expl
-//        aination.class));
+        startActivity(new Intent(this,video_lectures_activity.class));
 
 
     }
@@ -136,5 +140,9 @@ public class dashboard_student extends AppCompatActivity {
     public void button_enrolledcourses_clicked(View view) {
         startActivity(new Intent(this, enrolled_courses_activity.class));
 
+    }
+
+    public void button_dashboard_refresh(View view) {
+        this.recreate();
     }
 }

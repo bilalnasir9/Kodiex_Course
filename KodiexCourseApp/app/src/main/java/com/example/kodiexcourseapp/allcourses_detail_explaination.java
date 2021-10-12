@@ -1,5 +1,6 @@
 package com.example.kodiexcourseapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -32,8 +33,11 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,9 +46,9 @@ import java.util.Objects;
 
 public class allcourses_detail_explaination extends YouTubeBaseActivity {
     String instructor, lectures, level, price, rating, subject, title, course_key, url;
-    List<String> listduration = new ArrayList<>();
-    List<String> listlinks = new ArrayList<>();
-    List<String> listtitle = new ArrayList<>();
+        List<String> list_curriculum_duration = new ArrayList<>();
+    List<String> list_curriculum_link = new ArrayList<>();
+    List<String> list_curriculum_title = new ArrayList<>();
     YouTubePlayerView youTubePlayerView;
     AppCompatButton button_enroll;
     YouTubePlayer.OnInitializedListener onInitializedListener;
@@ -58,19 +62,17 @@ public class allcourses_detail_explaination extends YouTubeBaseActivity {
         setContentView(R.layout.activity_allcourses_detail_explaination);
         youTubePlayerView = findViewById(R.id.youtubeplayer);
         button_enroll = findViewById(R.id.btn_allcourses_detail_enroll);
-        onInitializedListener = new YouTubePlayer.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean b) {
-                player.loadVideo("qhctSdkHRPI");
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-            }
-        };
-        youTubePlayerView.initialize(playConfig.API_KEY, onInitializedListener);
-
+        TextView tvtitle = findViewById(R.id.tv_allcourses_detail_title);
+        TextView tvinstructor = findViewById(R.id.tv_allcourses_detail_instructor);
+        TextView tvlectures = findViewById(R.id.tv_allcourses_detail_totalLectures);
+        TextView tvlevel = findViewById(R.id.tv_allcourses_detail_level);
+        TextView tvprice = findViewById(R.id.tv_allcourses_detail_price);
+        RatingBar ratingBar = findViewById(R.id.ratingBar_allcourses_detail);
+        TextView tvsubject = findViewById(R.id.tv_allcourses_detail_subject);
         Intent intent = getIntent();
+        RecyclerView recyclerView = findViewById(R.id.recycler_allcourses_detail);
+//        listlinks = intent.getStringArrayListExtra("linklist");
+//         intro_url=    listlinks.get(0);
         title = intent.getStringExtra("title");
         instructor = intent.getStringExtra("instructor");
         lectures = intent.getStringExtra("lectures");
@@ -79,18 +81,7 @@ public class allcourses_detail_explaination extends YouTubeBaseActivity {
         subject = intent.getStringExtra("subject");
         rating = intent.getStringExtra("rating");
         url = intent.getStringExtra("url");
-
         course_key = intent.getStringExtra("course_key");
-        listtitle = intent.getStringArrayListExtra("titlecurriculumlist");
-        listduration = intent.getStringArrayListExtra("durationlist");
-        listlinks = intent.getStringArrayListExtra("linklist");
-        TextView tvtitle = findViewById(R.id.tv_allcourses_detail_title);
-        TextView tvinstructor = findViewById(R.id.tv_allcourses_detail_instructor);
-        TextView tvlectures = findViewById(R.id.tv_allcourses_detail_totalLectures);
-        TextView tvlevel = findViewById(R.id.tv_allcourses_detail_level);
-        TextView tvprice = findViewById(R.id.tv_allcourses_detail_price);
-        RatingBar ratingBar = findViewById(R.id.ratingBar_allcourses_detail);
-        TextView tvsubject = findViewById(R.id.tv_allcourses_detail_subject);
         tvtitle.setText(title);
         tvinstructor.setText(instructor);
         tvlectures.setText(lectures);
@@ -98,14 +89,59 @@ public class allcourses_detail_explaination extends YouTubeBaseActivity {
         tvprice.setText(price);
         tvsubject.setText(subject);
         ratingBar.setRating(Float.parseFloat(rating));
-        RecyclerView recyclerView = findViewById(R.id.recycler_allcourses_detail);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter_curriculum adapter = new adapter_curriculum(this, listduration, listlinks, listtitle);
-        recyclerView.setAdapter(adapter);
 
-//        Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
+        reference.child("admin").child("courses").child(course_key).child("Curriculum")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot snap2 : snapshot.getChildren()) {
+                            try {
+                                String title = Objects.requireNonNull(snap2.child("title").getValue()).toString();
+                                String duration = Objects.requireNonNull(snap2.child("duration").getValue()).toString();
+                                String link = Objects.requireNonNull(snap2.child("link").getValue()).toString();
+//                                list_courses_keys.add(key);
+                                list_curriculum_title.add(title);
+                                list_curriculum_duration.add(duration);
+                                list_curriculum_link.add(link);
+                            }catch (Exception exception){
+                                Toast.makeText(allcourses_detail_explaination.this, "Curriculum not found", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                       String intro_url=    list_curriculum_link.get(0);
+                        load_intro_video(intro_url);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(allcourses_detail_explaination.this));
+                        adapter_curriculum adapter = new adapter_curriculum(allcourses_detail_explaination.this, list_curriculum_duration, list_curriculum_link, list_curriculum_title);
+                        recyclerView.setAdapter(adapter);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
 
+//        listtitle = intent.getStringArrayListExtra("titlecurriculumlist");
+//        listduration = intent.getStringArrayListExtra("durationlist");
+
+
+
+
+    }
+
+    private void load_intro_video(String intro_url) {
+        onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean b) {
+                player.loadVideo(intro_url);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+            }
+        };
+        youTubePlayerView.initialize(playConfig.API_KEY, onInitializedListener);
     }
 
     public void btn_allcourse_detail_enroll(View view) {
@@ -127,7 +163,7 @@ public class allcourses_detail_explaination extends YouTubeBaseActivity {
                             ref2.child(userid).child("enrolled_courses").child(course_key).child("instructor").setValue(instructor);
                             ref2.child(userid).child("enrolled_courses").child(course_key).child("image_url").setValue(url);
                             ref2.child(userid).child("enrolled_courses").child(course_key).child("lectures_progress").setValue("0");
-                           ref2.child(userid).child("enrolled_courses").child(course_key).child("lectures").setValue(lectures);
+                            ref2.child(userid).child("enrolled_courses").child(course_key).child("lectures").setValue(lectures);
 
                             reference.child("admin").child("enrolled_status").child(course_key).child("total_enrolled").get().addOnCompleteListener(task -> {
                                 try {

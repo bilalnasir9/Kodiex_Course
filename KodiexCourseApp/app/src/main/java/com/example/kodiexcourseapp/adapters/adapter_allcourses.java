@@ -26,9 +26,6 @@ public class adapter_allcourses extends RecyclerView.Adapter<adapter_allcourses.
     Context context;
     List<String> list_courses_keys = new ArrayList<>();
     List<String> list_image_url = new ArrayList<>();
-    List<String> list_curriculum_title = new ArrayList<>();
-    List<String> list_curriculum_duration = new ArrayList<>();
-    List<String> list_curriculum_link = new ArrayList<>();
     List<String> list_instructor = new ArrayList<>();
     List<String> list_lectures = new ArrayList<>();
     List<String> list_level = new ArrayList<>();
@@ -47,9 +44,6 @@ public class adapter_allcourses extends RecyclerView.Adapter<adapter_allcourses.
         this.list_level = modelClass.getList_level();
         this.list_lectures = modelClass.getList_lectures();
         this.list_instructor = modelClass.getList_instructor();
-        this.list_curriculum_link = modelClass.getList_curriculum_link();
-        this.list_curriculum_duration = modelClass.getList_curriculum_duration();
-        this.list_curriculum_title = modelClass.getList_curriculum_title();
         list_courses_keys = modelClass.getList_courses_keys();
     }
 
@@ -68,6 +62,7 @@ public class adapter_allcourses extends RecyclerView.Adapter<adapter_allcourses.
         holder.tv_price.setText(list_price.get(position));
         Glide.with(context).load(list_image_url.get(position)).into(holder.imageView);
         holder.ratingBar.setRating(Float.parseFloat(list_rating.get(position)));
+
         holder.layout.setOnClickListener(view -> {
             Intent intent=new Intent(context, allcourses_detail_explaination.class);
             intent.putExtra("title",list_title.get(position));
@@ -79,14 +74,7 @@ public class adapter_allcourses extends RecyclerView.Adapter<adapter_allcourses.
             intent.putExtra("lectures",list_lectures.get(position));
              intent.putExtra("course_key",list_courses_keys.get(position));
              intent.putExtra("url",list_image_url.get(position));
-
-            intent.putStringArrayListExtra("durationlist", (ArrayList<String>) list_curriculum_duration);
-            intent.putStringArrayListExtra("linklist", (ArrayList<String>) list_curriculum_link);
-            intent.putStringArrayListExtra("titlecurriculumlist", (ArrayList<String>) list_curriculum_title);
             context.startActivity(intent);
-//                Toast.makeText(context, link, Toast.LENGTH_SHORT).show();
-//            Toast.makeText(context, duration, Toast.LENGTH_SHORT).show();
-
         });
     }
 
@@ -95,7 +83,7 @@ public class adapter_allcourses extends RecyclerView.Adapter<adapter_allcourses.
         return list_title.size();
     }
 
-    public class viewholder extends RecyclerView.ViewHolder {
+    public static class viewholder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView tv_instructor, tv_title, tv_subject, tv_price;
         RatingBar ratingBar;

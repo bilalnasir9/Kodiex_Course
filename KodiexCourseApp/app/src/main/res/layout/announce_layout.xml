@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
-    android:id="@+id/announce_layout"
-    android:background="@color/white">
+    android:id="@+id/announce_layout">
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"

@@ -3,27 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#03A9F4">
+    android:background="#03A9F4"
+    android:paddingHorizontal="5dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingHorizontal="5dp"
         android:layout_gravity="center"
-        android:backgroundTint="#002553"
         android:layout_marginTop="32dp"
         android:background="@drawable/backgroundshape10"
+        android:backgroundTint="#002553"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/edittext_admin_announcement_title"
+            android:id="@+id/edittext_admin_courses_newcurriculum_title"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/backgroundshape2"
             android:hint="Title"
@@ -38,15 +39,40 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edittext_admin_announcement_detail"
+            android:id="@+id/edittext_admin_courses_newcurriculum_duration"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/backgroundshape2"
+            android:digits="1234567890:"
+            android:gravity="start"
+            android:hint="Duration\t\t(format must be 00:00)"
+            android:inputType="textNoSuggestions"
+            android:maxLength="300"
+            android:maxLines="5"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="@color/white"
+            android:textColorHint="#C5C3C3"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edittext_admin_announcement_title" />
+
+        <EditText
+            android:id="@+id/edittext_admin_courses_newcurriculum_url"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/backgroundshape2"
             android:gravity="start"
-            android:hint="Detail"
+            android:hint="Vide link"
             android:maxLength="300"
             android:maxLines="5"
             android:paddingHorizontal="10dp"
@@ -61,32 +87,36 @@
             app:layout_constraintTop_toBottomOf="@+id/edittext_admin_announcement_title" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_admin_save_announcement"
-            android:layout_width="100dp"
+            android:id="@+id/btn_admin_courses_addnewcurriculum_save"
+            android:layout_width="200dp"
             android:layout_height="35dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/backgroundshape1"
             android:text="Save"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edittext_admin_announcement_detail" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_admin_cancel_announcement"
-            android:layout_width="100dp"
+            android:id="@+id/btn_admin_courses_addnewcurriculum_cancel"
+            android:layout_width="200dp"
             android:layout_height="35dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/backgroundshape1"
             android:backgroundTint="#CF8181"
             android:text="Cancel"
             android:textAllCaps="false"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_admin_save_announcement"
             app:layout_constraintTop_toBottomOf="@+id/edittext_admin_announcement_detail" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

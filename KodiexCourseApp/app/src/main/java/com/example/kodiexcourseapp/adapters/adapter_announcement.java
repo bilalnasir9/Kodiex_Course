@@ -1,6 +1,5 @@
 package com.example.kodiexcourseapp.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -9,14 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kodiexcourseapp.R;
-import com.example.kodiexcourseapp.announcement_activity;
 
 import java.util.List;
 

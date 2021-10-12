@@ -43,6 +43,17 @@
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="15dp"
+            android:onClick="button_dashboard_refresh"
+            app:srcCompat="@drawable/ic_baseline_refresh"
+            tools:layout_editor_absoluteX="284dp"
+            tools:layout_editor_absoluteY="94dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -311,5 +322,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

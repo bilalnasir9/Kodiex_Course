@@ -1,4 +1,4 @@
-package com.example.kodiexcourseapp;
+package com.example.kodiexcourseapp.admin_portal;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kodiexcourseapp.MainActivity;
+import com.example.kodiexcourseapp.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -80,16 +82,18 @@ public class admin_portal extends AppCompatActivity {
            reference.child("announcement").child(counter).child("title").setValue(gettitle);
            reference.child("counter_announce").setValue(counter_increse);
                 Toast.makeText(this,"Task Successful!", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+                startActivity(new Intent(this,admin_portal.class));
             }
-            dialog.dismiss();
+
         });
         cancelButton.setOnClickListener(v -> {
              dialog.dismiss();
         });
         dialog.show();
         Window window = dialog.getWindow();
-        window.setGravity(Gravity.BOTTOM);
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//        window.setGravity(Gravity.BOTTOM);
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
     }
@@ -103,4 +107,11 @@ public class admin_portal extends AppCompatActivity {
         auth.signOut();
         startActivity(new Intent(this, MainActivity.class));
     }
+
+    public void btn_admin_courses(View view) {
+        startActivity(new Intent(this, admin_courses_activity.class));
+
+    }
+
+
 }

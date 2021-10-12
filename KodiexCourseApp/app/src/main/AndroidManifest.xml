@@ -19,24 +19,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KodiexCourseApp">
         <activity
-            android:name=".enrolled_courses_activity"
+            android:name=".admin_portal.admin_add_new_course_activity"
             android:exported="true"
             android:theme="@style/noactionbar"/>
         <activity
-            android:name=".allcourses_detail_explaination"
-            android:configChanges="orientation|screenSize"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".allcourses_activity"
-            android:exported="true" />
-        <activity
-            android:name=".admin_portal"
+            android:name=".admin_portal.admin_courses_activity"
             android:exported="true"
             android:theme="@style/noactionbar" />
         <activity
-            android:name=".announcement_activity"
+            android:name=".play_video_lecture_activity"
+            android:configChanges="orientation|screenSize"
             android:exported="true" />
+        <activity
+            android:name=".video_lectures_activity"
+            android:exported="true"
+            android:theme="@style/noactionbar" />
+        <activity
+            android:name=".enrolled_courses_activity"
+            android:exported="true"
+            android:theme="@style/noactionbar" />
+        <activity
+            android:name=".allcourses_detail_explaination"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            />
+        <activity
+            android:name=".allcourses_activity"
+            android:exported="true"
+            android:theme="@style/noactionbar"/>
+        <activity
+            android:name=".admin_portal.admin_portal"
+            android:exported="true"
+            android:theme="@style/noactionbar" />
+        <activity
+            android:name=".admin_portal.announcement_activity"
+            android:exported="true"
+            android:theme="@style/noactionbar" />
         <activity
             android:name=".userprofile_activity"
             android:exported="true"
