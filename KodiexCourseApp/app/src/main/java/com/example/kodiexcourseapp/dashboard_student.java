@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,9 +14,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.util.Util;
 import com.example.kodiexcourseapp.admin_portal.announcement_activity;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +38,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class dashboard_student extends AppCompatActivity {
@@ -35,7 +52,16 @@ public class dashboard_student extends AppCompatActivity {
     ProgressDialog progressDialog;
     Uri profileurl;
     TextView tv_completedcourse, tvenrolledcourse;
-
+    BarChart barChart;
+    // variable for our bar data.
+    BarData barData;
+    // variable for our bar data set.
+    BarDataSet barDataSet;
+    // array list for storing entries.
+    List<BarEntry> barEntriesArrayList = new ArrayList<>();
+    List<String> list_keys = new ArrayList<>();
+    List<String> list_values = new ArrayList<>();
+    int total=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +71,46 @@ public class dashboard_student extends AppCompatActivity {
         tv_completedcourse = findViewById(R.id.textview_dashborad_completedcourse);
         tvenrolledcourse = findViewById(R.id.textview_dashborad_enrolledcourse);
         imageView_userprofile = findViewById(R.id.imageview_dashboarduserprofile);
+
+        barChart = findViewById(R.id.verticalbarchart_chart);
+
+
         userid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
+
+        reference.child("admin").child("enrolled_status").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int counter = 1;
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    try {
+//                        String key = ds.getKey();
+                        String value = Objects.requireNonNull(ds.child("total_enrolled").getValue()).toString();
+                        list_keys.add(String.valueOf(counter));
+                        list_values.add(value);
+//                        Toast.makeText(dashboard_student.this, String.valueOf(total), Toast.LENGTH_SHORT).show();
+                        counter++;
+                    } catch (Exception ignored) {
+                    }
+                }
+                loadChartData();
+                createChartData();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
         reference.child(userid).child("total_enrolled_courses").get().addOnCompleteListener(task -> {
             try {
                 String enrolled_course_value = Objects.requireNonNull(task.getResult().getValue()).toString();
                 tvenrolledcourse.setText(enrolled_course_value);
             } catch (Exception e) {
-            e.printStackTrace();
+                e.printStackTrace();
             }
         });
         reference.child(userid).child("completed_courses").get().addOnCompleteListener(task -> {
@@ -59,10 +118,53 @@ public class dashboard_student extends AppCompatActivity {
                 String value = Objects.requireNonNull(task.getResult().getValue()).toString();
                 tv_completedcourse.setText(value);
             } catch (Exception e) {
-            e.printStackTrace();
+                e.printStackTrace();
             }
         });
         loaddata();
+    }
+
+    private void loadChartData() {
+        // adding new entry to our array list with bar
+        // entry and passing x and y axis value to it.
+
+                for (int i=0;i<list_keys.size();i++){
+            barEntriesArrayList.add(
+                    new BarEntry(Float.parseFloat(list_keys.get(i)), Float.parseFloat(list_values.get(i))));
+        }
+    }
+
+    public void createChartData() {
+        barDataSet = new BarDataSet(barEntriesArrayList, "Courses");
+        barDataSet.setDrawValues(false);
+        barChart.setDrawBorders(false);
+        XAxis xAxis = barChart.getXAxis();
+//        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+
+        //change the position of x-axis to the bottom
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawGridLines(false);
+
+        // creating a new bar data and
+        // passing our bar data set.
+        barData = new BarData(barDataSet);
+
+        // below line is to set data
+        // to our bar chart.
+        barChart.setData(barData);
+
+        // adding color to our bar data set.
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        // setting text color.
+        barDataSet.setValueTextColor(Color.BLACK);
+
+        // setting text size
+        barDataSet.setValueTextSize(16f);
+        barChart.getDescription().setEnabled(false);
+        barChart.animateY(2000);
     }
 
     private void loaddata() {
@@ -132,7 +234,7 @@ public class dashboard_student extends AppCompatActivity {
     }
 
     public void button_videolectures_clicked(View view) {
-        startActivity(new Intent(this,video_lectures_activity.class));
+        startActivity(new Intent(this, video_lectures_activity.class));
 
 
     }
